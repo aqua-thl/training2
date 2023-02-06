@@ -22,7 +22,7 @@ jobs:
         with:
           scan-type: 'fs'
           security-checks: 'vuln,config,secret'
-          hide-progress: false
+          hide-progress: true
           format: 'table'
         env:
           AQUA_KEY: ${{ secrets.AQUA_KEY }}
@@ -31,7 +31,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
-          push: true
+          push: false
           tags: "${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPO }}:${{ github.sha }}"
       - name: Manifest Generation
         run: |
